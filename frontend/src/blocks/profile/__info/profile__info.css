@@ -1,0 +1,36 @@
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: #ffffff;
+  max-width: 500px;
+  min-height: 73px;
+  margin-left: 31px;
+}
+
+@media screen and (max-width: 720px) {
+  .profile__info {
+    margin-left: 32px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .profile__info {
+    justify-content: center;
+    width: 345px;
+  }
+}
+
+@media screen and (max-width: 445px) {
+  .profile__info {
+    width: 282px;
+    min-height: 65px;
+    margin-left: 38px;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .profile__info {
+    width: 245px;
+  }
+}

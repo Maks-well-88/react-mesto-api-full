@@ -1,0 +1,7 @@
+.form__input {
+	border: none;
+	outline: none;
+	font-size: 14px;
+	line-height: 17px;
+	font-family: 'Inter', 'Arial', sans-serif;
+}

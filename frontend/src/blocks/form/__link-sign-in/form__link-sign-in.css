@@ -1,0 +1,9 @@
+.form__link-sign-in {
+	text-decoration: none;
+	color: #ffffff;
+  transition: all .2 ease-in-out;
+}
+
+.form__link-sign-in:hover {
+	opacity: 0.6;
+}

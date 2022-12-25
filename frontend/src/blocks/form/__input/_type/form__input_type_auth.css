@@ -1,0 +1,12 @@
+.form__input_type_auth {
+	padding: 0 0 8px 0;
+	font-style: normal;
+	font-weight: 500;
+	background-color: #000000;
+	border-bottom: 2px solid #cccccc;
+	color: #ffffff;
+}
+
+.form__input_type_auth:nth-child(1) {
+	margin-bottom: 30px;
+}

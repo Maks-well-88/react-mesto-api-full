@@ -1,0 +1,7 @@
+.form__button {
+	cursor: pointer;
+	border: none;
+	border-radius: 2px;
+	font-size: 18px;
+	line-height: 22px;
+}

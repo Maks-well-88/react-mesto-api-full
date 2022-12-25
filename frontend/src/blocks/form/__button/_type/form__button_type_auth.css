@@ -1,0 +1,14 @@
+.form__button_type_auth {
+	margin-top: 216px;
+	height: 50px;
+	background-color: #ffffff;
+	color: #000000;
+	font-family: 'Inter', 'Arial', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	transition: all 0.2s ease-in-out;
+}
+
+.form__button_type_auth:hover {
+	opacity: 0.85;
+}

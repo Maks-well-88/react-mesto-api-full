@@ -1,0 +1,24 @@
+.profile__name-wrapper {
+  max-width: 500px;
+  display: flex;
+  align-items: baseline;
+}
+
+@media screen and (max-width: 720px) {
+  .profile__name-wrapper {
+    justify-content: center;
+    width: 345px;
+  }
+}
+
+@media screen and (max-width: 445px) {
+  .profile__name-wrapper {
+    width: 282px;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .profile__name-wrapper {
+    width: 245px;
+  }
+}
