@@ -2,11 +2,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/user');
 const constants = require('../utils/constants');
-require('dotenv').config();
 const NotFoundError = require('../errors/notFoundError');
 const NotAuthError = require('../errors/notAuthError');
 
-const { JWT_SECRET } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = async (req, res, next) => {
   try {
@@ -66,7 +65,11 @@ const login = async (req, res, next) => {
     if (user) {
       const matched = await bcrypt.compare(password, user.password);
       if (!matched) next(new NotAuthError(constants.NO_ACCESS_MESSAGE));
-      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'secret-key',
+        { expiresIn: '7d' },
+      );
       res.status(constants.OK).send({ token });
       return;
     }
