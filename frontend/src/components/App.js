@@ -49,7 +49,7 @@ export function App() {
 				.getContent(token)
 				.then(response => {
 					if (response) {
-						const { email } = response.data;
+						const { email } = response;
 						setAuthorize({ loggedIn: true, email: email });
 						navigate('/');
 					}
@@ -87,7 +87,7 @@ export function App() {
 	const closeInfoTooltip = () => {
 		const successState = infoTooltip.success;
 		setInfoTooltip({ isOpen: false, message: '', success: successState });
-		infoTooltip.success && navigate('/sign-in');
+		infoTooltip.success && navigate('/signin');
 	};
 
 	const handleUpdateUser = newProfileData => {
@@ -159,7 +159,7 @@ export function App() {
 					.getContent(localStorage.getItem('token'))
 					.then(response => {
 						if (response) {
-							const { email } = response.data;
+							const { email } = response;
 							setAuthorize({ loggedIn: true, email: email });
 							navigate('/');
 							setValues({ email: '', password: '' });
@@ -209,9 +209,9 @@ export function App() {
 							/>
 						}
 					/>
-					<Route path='/sign-up' element={<Register onRegister={handleRegister} />} />
-					<Route path='/sign-in' element={<Login onLogin={handleLogin} />} />
-					<Route path='*' element={authorize.loggedIn ? <Navigate to='/' /> : <Navigate to='/sign-in' />} />
+					<Route path='/signup' element={<Register onRegister={handleRegister} />} />
+					<Route path='/signin' element={<Login onLogin={handleLogin} />} />
+					<Route path='*' element={authorize.loggedIn ? <Navigate to='/' /> : <Navigate to='/signin' />} />
 				</Routes>
 				<Footer />
 			</div>

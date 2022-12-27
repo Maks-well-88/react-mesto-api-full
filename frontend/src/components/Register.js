@@ -42,7 +42,7 @@ const Register = ({ onRegister }) => {
 				</button>
 				<p className='form__text-register'>
 					Уже зарегистрированы?{' '}
-					<Link className='form__link-sign-in' to='/sign-in'>
+					<Link className='form__link-sign-in' to='/signin'>
 						Войти
 					</Link>
 				</p>

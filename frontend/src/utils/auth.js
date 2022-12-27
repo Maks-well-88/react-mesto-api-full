@@ -30,10 +30,10 @@ class Auth {
 
 	getContent(token) {
 		return fetch(`${this._url}/users/me`, {
-			method: 'GET',
 			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${token}`,
+				'Origin': 'https://cool-mesto.students.nomoredomains.club',
+				'Authorization': `Bearer ${token}`,
+				'Access-Control-Request-Headers': 'Authorization',
 			},
 		})
 			.then(response => {
@@ -44,8 +44,10 @@ class Auth {
 }
 
 export const auth = new Auth({
-	url: 'https://auth.nomoreparties.co',
+	url: 'https://api.cool-mesto.students.nomoredomains.club',
 	headers: {
 		'Content-Type': 'application/json',
+		'Origin': 'https://cool-mesto.students.nomoredomains.club',
+		'Access-Control-Request-Headers': 'Content-Type',
 	},
 });

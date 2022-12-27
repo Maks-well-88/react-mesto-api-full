@@ -2,6 +2,7 @@ class Api {
 	constructor(config) {
 		this._url = config.url;
 		this._headers = config.headers;
+		this._headersWithMethods = config.headersWithMethods;
 	}
 
 	_getResponce(apiResult) {
@@ -13,7 +14,11 @@ class Api {
 	getInfo() {
 		return this._getResponce(
 			fetch(`${this._url}/users/me`, {
-				headers: this._headers,
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+					'Origin': 'https://cool-mesto.students.nomoredomains.club',
+					'Access-Control-Request-Headers': 'Authorization',
+				},
 			})
 		);
 	}
@@ -21,7 +26,11 @@ class Api {
 	renderInitialCards() {
 		return this._getResponce(
 			fetch(`${this._url}/cards`, {
-				headers: this._headers,
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+					'Origin': 'https://cool-mesto.students.nomoredomains.club',
+					'Access-Control-Request-Headers': 'Authorization',
+				},
 			})
 		);
 	}
@@ -30,7 +39,12 @@ class Api {
 		return this._getResponce(
 			fetch(`${this._url}/users/me`, {
 				method: 'PATCH',
-				headers: this._headers,
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+					'Content-type': 'application/json',
+					'Origin': 'https://cool-mesto.students.nomoredomains.club',
+					'Access-Control-Request-Headers': 'Content-Type, Authorization',
+				},
 				body: JSON.stringify(body),
 			})
 		);
@@ -40,7 +54,12 @@ class Api {
 		return this._getResponce(
 			fetch(`${this._url}/cards`, {
 				method: 'POST',
-				headers: this._headers,
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+					'Content-type': 'application/json',
+					'Origin': 'https://cool-mesto.students.nomoredomains.club',
+					'Access-Control-Request-Headers': 'Content-Type, Authorization',
+				},
 				body: JSON.stringify(body),
 			})
 		);
@@ -50,7 +69,12 @@ class Api {
 		return this._getResponce(
 			fetch(`${this._url}/cards/${cartId}`, {
 				method: 'DELETE',
-				headers: this._headers,
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+					'Content-type': 'application/json',
+					'Origin': 'https://cool-mesto.students.nomoredomains.club',
+					'Access-Control-Request-Headers': 'Content-Type, Authorization',
+				},
 			})
 		);
 	}
@@ -60,14 +84,24 @@ class Api {
 			return this._getResponce(
 				fetch(`${this._url}/cards/${cartId}/likes`, {
 					method: 'DELETE',
-					headers: this._headers,
+					headers: {
+						'Authorization': `Bearer ${localStorage.getItem('token')}`,
+						'Content-type': 'application/json',
+						'Origin': 'https://cool-mesto.students.nomoredomains.club',
+						'Access-Control-Request-Headers': 'Content-Type, Authorization',
+					},
 				})
 			);
 		}
 		return this._getResponce(
 			fetch(`${this._url}/cards/${cartId}/likes`, {
 				method: 'PUT',
-				headers: this._headers,
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+					'Content-type': 'application/json',
+					'Origin': 'https://cool-mesto.students.nomoredomains.club',
+					'Access-Control-Request-Headers': 'Content-Type, Authorization',
+				},
 			})
 		);
 	}
@@ -76,17 +110,16 @@ class Api {
 		return this._getResponce(
 			fetch(`${this._url}/users/me/avatar`, {
 				method: 'PATCH',
-				headers: this._headers,
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+					'Content-type': 'application/json',
+					'Origin': 'https://cool-mesto.students.nomoredomains.club',
+					'Access-Control-Request-Headers': 'Content-Type, Authorization',
+				},
 				body: JSON.stringify({ avatar: avatarUrl }),
 			})
 		);
 	}
 }
 
-export const api = new Api({
-	url: 'https://nomoreparties.co/v1/cohort-50',
-	headers: {
-		authorization: 'b0180cd6-e00d-4c46-af25-2755ea60dd90',
-		'content-type': 'application/json',
-	},
-});
+export const api = new Api({ url: 'https://api.cool-mesto.students.nomoredomains.club'});
