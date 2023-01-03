@@ -4,6 +4,8 @@ const userModel = require('../models/user');
 const constants = require('../utils/constants');
 const NotFoundError = require('../errors/notFoundError');
 const NotAuthError = require('../errors/notAuthError');
+const ConflictError = require('../errors/conflictError');
+const BadRequestError = require('../errors/badRequestError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -54,6 +56,12 @@ const createUser = async (req, res, next) => {
     const { password, ...userData } = user._doc;
     return res.status(constants.CREATED).send(userData);
   } catch (error) {
+    if (error.code === 11000) {
+      return next(new ConflictError(constants.ALREADY_EXISTS_MESSAGE));
+    }
+    if (error.name === 'ValidationError' || error.name === 'CastError') {
+      return next(new BadRequestError(`${Object.values(error.errors).map((err) => err.message).join(', ')}`));
+    }
     return next(error);
   }
 };
@@ -75,6 +83,9 @@ const login = async (req, res, next) => {
     }
     if (!user) next(new NotAuthError(constants.NO_ACCESS_MESSAGE));
   } catch (error) {
+    if (error.name === 'ValidationError' || error.name === 'CastError') {
+      next(new BadRequestError(`${Object.values(error.errors).map((err) => err.message).join(', ')}`));
+    }
     next(error);
   }
 };
@@ -91,6 +102,9 @@ const updateProfile = async (req, res, next) => {
     }
     return res.status(constants.OK).send(user);
   } catch (error) {
+    if (error.name === 'ValidationError' || error.name === 'CastError') {
+      return next(new BadRequestError(`${Object.values(error.errors).map((err) => err.message).join(', ')}`));
+    }
     return next(error);
   }
 };
@@ -107,6 +121,9 @@ const updateAvatar = async (req, res, next) => {
     }
     return res.status(constants.OK).send(user);
   } catch (error) {
+    if (error.name === 'ValidationError' || error.name === 'CastError') {
+      return next(new BadRequestError(`${Object.values(error.errors).map((err) => err.message).join(', ')}`));
+    }
     return next(error);
   }
 };
